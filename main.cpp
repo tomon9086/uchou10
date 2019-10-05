@@ -2,28 +2,10 @@
 #include <fstream>
 #include <string>
 
+#include "./header/uchou10.hpp"
+
 using namespace std;
-
-typedef enum {
-	TOKEN_NUMBER
-} TokenType;
-
-typedef struct Token Token;
-struct Token {
-	TokenType type;
-};
-
-typedef struct Number Number;
-struct Number: Token {
-	double val;
-};
-
-void interpret(string source, bool quiet = false) {
-	Number *num = (Number*)malloc(sizeof(Number));
-	num->type = TOKEN_NUMBER;
-	num->val = stod(source);
-	cout << num->val << endl;
-}
+using namespace uchou10;
 
 int main(int argc, char *argv[]) {
 	string line;
