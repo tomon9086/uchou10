@@ -1,15 +1,19 @@
-typedef enum {
-	TOKEN_NUMBER
-} TokenType;
+#include <variant>
 
-typedef struct Token Token;
-struct Token {
-	TokenType type;
-};
+using namespace std;
 
-typedef struct Number Number;
-struct Number: Token {
-	double val;
-};
+namespace ast {
+	typedef enum {
+		TOKEN_ROOT,
+		TOKEN_NUMBER
+	} TokenType;
 
+	typedef struct Token {
+		TokenType type;
+		Token *next;
+	} Token;
 
+	typedef struct Number: Token {
+		double val;
+	} Number;
+}
