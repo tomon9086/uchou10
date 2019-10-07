@@ -16,6 +16,11 @@ namespace uchou10 {
 		for(int i = 0; i < line.length(); i++) {
 			char c = line[i];
 			switch(c) {
+				case ' ':
+				case '\t':
+				{
+					break;
+				}
 				case '0':
 				case '1':
 				case '2':
