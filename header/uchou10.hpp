@@ -27,17 +27,24 @@ namespace uchou10 {
 				case '8':
 				case '9':
 				{
-					Number *num = (Number*)malloc(sizeof(Number));
+					Number *num;
+					if(curr->type == TOKEN_NUMBER) {
+						num = (Number*)curr;
+					} else {
+						num = (Number*)malloc(sizeof(Number));
+						num->val = 0;
+						curr->next = num;
+						curr = num;
+					}
 					num->type = TOKEN_NUMBER;
-					num->val = atoi(&c);
+					num->val = stoi(to_string((int)num->val) + &c);
 					num->next = NULL;
-					curr->next = num;
-					curr = num;
 					break;
 				}
 				default:
 				{
 					cerr << "unexpected token: \"" << c << "\"" << endl;
+					root->next = NULL;
 				}
 			}
 		}
