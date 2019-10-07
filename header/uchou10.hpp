@@ -10,6 +10,7 @@ namespace uchou10 {
 	Token *tokenize(string line) {
 		Token *root = (Token*)malloc(sizeof(Token));
 		root->type = TOKEN_ROOT;
+		root->next = NULL;
 
 		Token *curr = root;
 		for(int i = 0; i < line.length(); i++) {
