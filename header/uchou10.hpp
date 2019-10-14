@@ -46,6 +46,28 @@ namespace uchou10 {
 					num->next = NULL;
 					break;
 				}
+				case '+':
+				case '-':
+				{
+					Operator *op = (Operator*)malloc(sizeof(Operator));
+					op->type = TOKEN_OPERATOR;
+					switch(c) {
+						case '+':
+						{
+							op->op_type = OPERATOR_ADD;
+							break;
+						}
+						case '-':
+						{
+							op->op_type = OPERATOR_SUBTRACT;
+							break;
+						}
+					}
+					op->next = NULL;
+					curr->next = op;
+					curr = op;
+					break;
+				}
 				default:
 				{
 					cerr << "unexpected token: \"" << c << "\"" << endl;
@@ -63,9 +85,11 @@ namespace uchou10 {
 			t = t->next;
 			free(garbage);
 			if(t->type == TOKEN_NUMBER) {
-				cout << " val: " << ((Number*)t)->val << endl;
+				cout << "    val: " << ((Number*)t)->val << endl;
+			} else if(t->type == TOKEN_OPERATOR) {
+				cout << "op_type: " << ((Operator*)t)->op_type << endl;
 			} else {
-				cout << "type: " << t->type << endl;
+				cout << "   type: " << t->type << endl;
 			}
 		}
 	}

@@ -5,8 +5,14 @@ using namespace std;
 namespace ast {
 	typedef enum {
 		TOKEN_ROOT,
-		TOKEN_NUMBER
+		TOKEN_NUMBER,
+		TOKEN_OPERATOR
 	} TokenType;
+
+	typedef enum {
+		OPERATOR_ADD,
+		OPERATOR_SUBTRACT
+	} OperatorType;
 
 	typedef struct Token {
 		TokenType type;
@@ -16,4 +22,8 @@ namespace ast {
 	typedef struct Number: Token {
 		double val;
 	} Number;
+
+	typedef struct Operator: Token {
+		OperatorType op_type;
+	} Operator;
 }
